@@ -9,6 +9,7 @@ from ..starlib import _extract_feature
 
 from statsmodels.base.wrapper import ResultsWrapper
 from statsmodels.regression.linear_model import RegressionResults
+from statsmodels.base.model import GenericLikelihoodModelResults
 
 from . import register_class
 
@@ -38,6 +39,8 @@ def extract_model_data(model):
 
     if isinstance(model, ResultsWrapper):
         data['cov_names'] = model.params.index.values
+    elif isinstance(model, GenericLikelihoodModelResults):
+        data['cov_names'] = model.model.exog_names
     else:
         # Simple RegressionResults, for instance as a result of
         # get_robustcov_results():
