@@ -11,6 +11,8 @@ from statsmodels.base.wrapper import ResultsWrapper
 from statsmodels.regression.linear_model import RegressionResults
 from statsmodels.base.model import GenericLikelihoodModelResults
 
+DEV_VERSION = True
+
 from . import register_class
 
 # For features that are simple attributes of "model", establish the
