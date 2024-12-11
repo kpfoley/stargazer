@@ -67,6 +67,7 @@ def extract_model_data(model):
 
 classes = [(ResultsWrapper, extract_model_data),
            (RegressionResults, extract_model_data),
+           (GenericLikelihoodModelResults, extract_model_data)
            ]
 
 for klass, translator in classes:
