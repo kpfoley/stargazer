@@ -4,6 +4,7 @@ Compatibility layer with results from statsmodels.
 
 from math import sqrt
 import pandas as pd
+import numpy as np
 
 from ..starlib import _extract_feature
 
