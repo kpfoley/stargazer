@@ -35,7 +35,18 @@ def extract_model_data(model):
 
     data = {}
     for key, val in statsmodels_map.items():
-        data[key] = _extract_feature(model, val)
+        feature = _extract_feature(model, val)
+        if isinstance(model, GenericLikelihoodModelResults):
+            exog_names = model.model.exog_names
+            if val in [
+              'pvalues', 
+              'params',
+              'bse',
+            ]:
+                if isinstance(feature, np.ndarray):
+                    if len(exog_names) == feature.size:
+                        feature = pd.Series(feature, index=exog_names)
+        data[key] = feature
 
     data['dependent_variable'] = model.model.endog_names
 
